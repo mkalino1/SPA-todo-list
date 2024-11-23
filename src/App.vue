@@ -1,38 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { useTodosStore } from './stores/todos'
-
-const store = useTodosStore()
-store.$subscribe((mutation) => {
-  console.log(`The todos store was mutated using method ${mutation.type}`)
-})
-
-store.$onAction(({ name, args, after, onError }) => {
-  const startTime = Date.now()
-  // this will trigger before an action on `store` is executed
-  console.log(`Start "${name}" with params [${args.join(',  ')}].`)
-
-  // this will trigger if the action succeeds and after it has fully run.
-  // it waits for any returned promised
-  after((result) => {
-    console.log(`Finished "${name}" after ${Date.now() - startTime}ms.\nResult: ${result}.`)
-  })
-
-  // this will trigger if the action throws or returns a promise that rejects
-  onError((error) => {
-    console.warn(`Failed "${name}" after ${Date.now() - startTime}ms.\nError: ${error}.`)
-  })
-})
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
       <HelloWorld msg="Todo list" />
-
       <nav>
         <RouterLink to="/">All items</RouterLink>
         <RouterLink to="/done">Done items</RouterLink>

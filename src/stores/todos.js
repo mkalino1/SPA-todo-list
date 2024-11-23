@@ -6,7 +6,7 @@ export const useTodosStore = defineStore('todos', () => {
     { text: 'Practice Pinia', id: 0, is_done: false },
     { text: 'Practice VueRouter', id: 1, is_done: false },
   ])
-  let nextId = 0
+  let nextId = todos.value.length
 
   const done_todos = computed(() => todos.value.filter((item) => item.is_done))
 
