@@ -1,6 +1,12 @@
 # SPA-todo-list
 
-This template should help get you started developing with Vue 3 in Vite.
+### Technologies to practice before Vue exam:
+
+- [x] Vue Router
+- [x] Pinia
+- [x] Naive UI
+- [ ] Typescript
+- [ ] Vitest
 
 ## Recommended IDE Setup
 

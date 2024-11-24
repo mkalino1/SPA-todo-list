@@ -10,7 +10,8 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="Todo list" />
       <nav>
         <RouterLink to="/">All items</RouterLink>
-        <RouterLink to="/done">Done items</RouterLink>
+        <RouterLink :to="{ name: 'done' }">Done items</RouterLink>
+        <RouterLink :to="{ name: 'progress' }">In progress items</RouterLink>
       </nav>
     </div>
   </header>

@@ -4,6 +4,6 @@ import TodoList from '@/components/TodoList.vue'
 
 <template>
   <main>
-    <TodoList filter="done" />
+    <TodoList filter="in_progress" />
   </main>
 </template>

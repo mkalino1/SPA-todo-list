@@ -9,6 +9,8 @@ export const useTodosStore = defineStore('todos', () => {
   let nextId = todos.value.length
 
   const done_todos = computed(() => todos.value.filter((item) => item.is_done))
+  const in_progress_todos = computed(() => todos.value.filter((item) => !item.is_done))
+  const last_todo = computed(() => todos.value.at(-1))
 
   function add_todo(todo_text) {
     todos.value.push({ text: todo_text, id: nextId, is_done: false })
@@ -19,5 +21,9 @@ export const useTodosStore = defineStore('todos', () => {
     todos.value = []
   }
 
-  return { todos, done_todos, add_todo, reset }
+  function todoById(id) {
+    return todos.value.find((todo) => todo.id === id)
+  }
+
+  return { todos, done_todos, in_progress_todos, last_todo, add_todo, reset, todoById }
 })
