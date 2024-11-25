@@ -3,8 +3,18 @@ import { computed, ref } from 'vue'
 
 export const useTodosStore = defineStore('todos', () => {
   const todos = ref([
-    { text: 'Practice Pinia', id: 0, is_done: false },
-    { text: 'Practice VueRouter', id: 1, is_done: false },
+    {
+      text: 'Practice Pinia',
+      desc: 'The intuitive store for Vue.js. Type Safe, Extensible, and Modular by design. Forget you are even using a store.',
+      id: 0,
+      is_done: false,
+    },
+    {
+      text: 'Practice VueRouter',
+      desc: 'The official Router for Vue.js Expressive, configurable and convenient routing for Vue.js',
+      id: 1,
+      is_done: false,
+    },
   ])
   let nextId = todos.value.length
 
@@ -13,7 +23,7 @@ export const useTodosStore = defineStore('todos', () => {
   const last_todo = computed(() => todos.value.at(-1))
 
   function add_todo(todo_text) {
-    todos.value.push({ text: todo_text, id: nextId, is_done: false })
+    todos.value.push({ text: todo_text, desc: '', id: nextId, is_done: false })
     nextId++
   }
 

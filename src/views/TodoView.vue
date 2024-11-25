@@ -23,7 +23,14 @@ if (!todo) {
 <template>
   <main>
     <n-flex vertical>
-      <TodoItem v-if="todo" v-bind="todo" v-model:is_done="todo.is_done" v-model:text="todo.text" />
+      <TodoItem
+        v-if="todo"
+        v-bind="todo"
+        v-model:is_done="todo.is_done"
+        v-model:text="todo.text"
+        v-model:desc="todo.desc"
+        alonemode
+      />
     </n-flex>
   </main>
 </template>
