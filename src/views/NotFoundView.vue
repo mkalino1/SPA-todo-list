@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { NFlex } from 'naive-ui'
-defineProps(['pathMatch'])
+defineProps<{ pathMatch: string[] }>()
 </script>
 
 <template>

@@ -1,24 +1,26 @@
-<script setup>
+<script setup lang="ts">
 import { useTodosStore } from '@/stores/todos'
 import { NInput, NFlex, NSwitch, NDrawer, NDrawerContent, NButton } from 'naive-ui'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
-const { id, addmode } = defineProps({
-  id: Number,
-  addmode: Boolean,
-  alonemode: Boolean,
-})
-const is_done_model = defineModel('is_done')
-const text_model = defineModel('text')
-const desc_model = defineModel('desc')
+const { id, addmode } = defineProps<{
+  id?: number
+  addmode?: boolean
+  alonemode?: boolean
+}>()
+const isDoneModel = defineModel<boolean>('isDone')
+const textModel = defineModel<string>('text')
+const descModel = defineModel<string>('desc')
 const { add_todo } = useTodosStore()
 const router = useRouter()
-const show = ref(false)
+const showDrawer = ref(true)
 
 function add() {
-  add_todo(text_model.value)
-  text_model.value = ''
+  if (!addmode) {
+    return
+  }
+  add_todo(textModel.value)
+  textModel.value = ''
 }
 
 function showTodo() {
@@ -29,19 +31,19 @@ function showTodo() {
 }
 
 function activate() {
-  show.value = !show.value
+  showDrawer.value = !showDrawer.value
 }
 </script>
 
 <template>
-  <n-drawer v-if="alonemode" v-model:show="show" :width="680" placement="left">
-    <n-drawer-content :title="text_model" closable>
-      <n-input v-model:value="desc_model" type="textarea" placeholder="Write your description" />
+  <n-drawer v-if="alonemode" v-model:show="showDrawer" :width="680" placement="left">
+    <n-drawer-content :title="textModel" closable>
+      <n-input v-model:value="descModel" type="textarea" placeholder="Write your description" />
     </n-drawer-content>
   </n-drawer>
   <n-flex align="center" @click.self="showTodo" class="flex-container">
     <n-input
-      v-model:value="text_model"
+      v-model:value="textModel"
       type="text"
       placeholder="Write your idea"
       autosize
@@ -51,7 +53,7 @@ function activate() {
       <template #prefix>🐦</template>
       <template #suffix v-if="!addmode">Id: {{ id }}</template>
     </n-input>
-    <n-switch v-model:value="is_done_model" v-if="!addmode" />
+    <n-switch v-model:value="isDoneModel" v-if="!addmode" />
   </n-flex>
   <n-button v-if="alonemode" type="primary" @click="activate"> Show description </n-button>
 </template>

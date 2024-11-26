@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useTodosStore } from '@/stores/todos'
 import { NButton } from 'naive-ui'
 

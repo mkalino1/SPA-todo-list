@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ResetButton from '@/components/ResetButton.vue'
 import TodoItem from '@/components/TodoItem.vue'
 import TodoList from '@/components/TodoList.vue'

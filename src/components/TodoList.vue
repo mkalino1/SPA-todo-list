@@ -1,18 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import TodoItem from './TodoItem.vue'
 import { useTodosStore } from '@/stores/todos'
 import { storeToRefs } from 'pinia'
 import { NFlex } from 'naive-ui'
 
-const { todos, done_todos, in_progress_todos } = storeToRefs(useTodosStore())
-const props = defineProps(['filter'])
+const { todos, doneTodos, inProgressTodos } = storeToRefs(useTodosStore())
+const { filter } = defineProps<{ filter?: string }>()
 const filteredTodos = computed(() => {
-  switch (props.filter) {
+  switch (filter) {
     case 'done':
-      return done_todos.value
+      return doneTodos.value
     case 'in_progress':
-      return in_progress_todos.value
+      return inProgressTodos.value
     default:
       return todos.value
   }
@@ -25,7 +25,7 @@ const filteredTodos = computed(() => {
       v-for="todo in filteredTodos"
       :key="todo.id"
       v-bind="todo"
-      v-model:is_done="todo.is_done"
+      v-model:isDone="todo.isDone"
       v-model:text="todo.text"
     />
   </n-flex>

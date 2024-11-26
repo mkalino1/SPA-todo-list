@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TodoItem from '@/components/TodoItem.vue'
 import { useTodosStore } from '@/stores/todos'
 import { NFlex } from 'naive-ui'
@@ -6,14 +6,9 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const { todoById } = useTodosStore()
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true,
-  },
-})
+const { id } = defineProps<{ id: number }>()
 
-const todo = todoById(+props.id)
+const todo = todoById(+id)
 
 if (!todo) {
   router.push({ name: 'not-found' })
@@ -26,7 +21,7 @@ if (!todo) {
       <TodoItem
         v-if="todo"
         v-bind="todo"
-        v-model:is_done="todo.is_done"
+        v-model:isDone="todo.isDone"
         v-model:text="todo.text"
         v-model:desc="todo.desc"
         alonemode
