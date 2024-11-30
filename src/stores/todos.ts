@@ -22,7 +22,10 @@ export const useTodosStore = defineStore('todos', () => {
   const inProgressTodos = computed(() => todos.value.filter((item) => !item.isDone))
   const lastTodo = computed(() => todos.value.at(-1))
 
-  function add_todo(todo_text: string) {
+  function add_todo(todo_text: string | undefined) {
+    if (!todo_text) {
+      return
+    }
     todos.value.push({ text: todo_text, desc: '', id: nextId, isDone: false })
     nextId++
   }

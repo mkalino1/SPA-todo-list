@@ -49,6 +49,7 @@ function activate() {
       autosize
       style="flex-grow: 1"
       @keyup.enter="add"
+      data-test="todo-input"
     >
       <template #prefix>🐦</template>
       <template #suffix v-if="!addmode">Id: {{ id }}</template>

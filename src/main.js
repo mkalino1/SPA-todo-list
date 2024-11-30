@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-import loggingPlugin from './plugins/loggingPlugin'
+import loggingPlugin from './stores/plugins/loggingPlugin'
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 
 const app = createApp(App)
