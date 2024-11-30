@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useLocalStorage } from '@vueuse/core'
+import { useTodosStore } from './stores/todos'
+import { storeToRefs } from 'pinia'
+
+const { todos } = storeToRefs(useTodosStore())
+useLocalStorage('todos', todos)
 </script>
 
 <template>
