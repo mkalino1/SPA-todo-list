@@ -41,7 +41,7 @@ function activate() {
       <n-input v-model:value="descModel" type="textarea" placeholder="Write your description" />
     </n-drawer-content>
   </n-drawer>
-  <n-flex align="center" @click.self="showTodo" class="flex-container">
+  <n-flex align="center" @click.self="showTodo" class="flex-container" data-test="input-container">
     <n-input
       v-model:value="textModel"
       type="text"

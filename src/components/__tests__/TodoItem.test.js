@@ -1,7 +1,14 @@
 import { mount } from '@vue/test-utils'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 import TodoItem from '../TodoItem.vue'
 import { createPinia, setActivePinia } from 'pinia'
+import { useRouter } from 'vue-router'
+
+vi.mock('vue-router', () => ({
+  useRouter: vi.fn(() => ({
+    push: () => {},
+  })),
+}))
 
 describe('Todo Item', () => {
   beforeEach(() => {
@@ -34,5 +41,32 @@ describe('Todo Item', () => {
     await todo_input_inner.setValue('My other idea')
 
     expect(wrapper.props('text')).toBe('My other idea')
+  })
+
+  test('navigate you to todo page if not in addmode', async () => {
+    const push = vi.fn()
+    useRouter.mockImplementationOnce(() => ({
+      push,
+    }))
+    const wrapper = mount(TodoItem, { props: { id: 1, addmode: false } })
+    const inputContainer = wrapper.get('[data-test="input-container"]')
+
+    await inputContainer.trigger('click.self')
+
+    expect(push).toHaveBeenCalledTimes(1)
+    expect(push).toHaveBeenCalledWith('/todo/1')
+  })
+
+  test('dont navigate you to todo page if in addmode', async () => {
+    const push = vi.fn()
+    useRouter.mockImplementationOnce(() => ({
+      push,
+    }))
+    const wrapper = mount(TodoItem, { props: { addmode: true } })
+    const inputContainer = wrapper.get('[data-test="input-container"]')
+
+    await inputContainer.trigger('click.self')
+
+    expect(push).toHaveBeenCalledTimes(0)
   })
 })
