@@ -41,13 +41,18 @@ function activate() {
       <n-input v-model:value="descModel" type="textarea" placeholder="Write your description" />
     </n-drawer-content>
   </n-drawer>
-  <n-flex align="center" @click.self="showTodo" class="flex-container" data-test="input-container">
+  <n-flex
+    align="center"
+    @click.self="showTodo"
+    class="rounded-xl bg-neutral-100 p-4"
+    data-test="input-container"
+  >
     <n-input
       v-model:value="textModel"
       type="text"
       placeholder="Write your idea"
       autosize
-      style="flex-grow: 1"
+      class="grow"
       @keyup.enter="add"
       data-test="todo-input"
     >
@@ -58,10 +63,3 @@ function activate() {
   </n-flex>
   <n-button v-if="alonemode" type="primary" @click="activate"> Show description </n-button>
 </template>
-
-<style scoped>
-.flex-container {
-  padding: 20px;
-  background-color: whitesmoke;
-}
-</style>

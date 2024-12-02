@@ -10,7 +10,7 @@ import { NFlex } from 'naive-ui'
     <n-flex vertical>
       <TodoList />
       <TodoItem addmode />
-      <ResetButton />
+      <ResetButton class="mt-2" />
     </n-flex>
   </main>
 </template>

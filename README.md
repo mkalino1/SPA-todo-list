@@ -1,11 +1,12 @@
 # SPA-todo-list
 
-### Technologies to practice before Vue exam:
+### Technologies practiced before my Vue certification exam:
 
 - [x] Vue Router
 - [x] Pinia
-- [x] Typescript
 - [x] Vitest
+- [x] Typescript with Vue
+- [x] Tailwind
 - [x] Naive UI
 
 ## Customize configuration
